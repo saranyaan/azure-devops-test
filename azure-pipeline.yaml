@@ -12,7 +12,7 @@ steps:
 
   - script: |
       echo "Logging in to Docker Hub..."
-      echo "$(DOCKER_Password)" | docker login -u "saranya275" --password-stdin
+      echo "$(docker_passwords)" | docker login -u "saranya275" 
     displayName: 'Docker Login'
 
   - script: |
