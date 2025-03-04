@@ -1,0 +1,25 @@
+trigger:
+  - main  # Or your branch name
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerHubUsername: 'YOUR_DOCKERHUB_USERNAME'
+  imageName: 'YOUR_DOCKERHUB_USERNAME/your-image-name'
+
+steps:
+  - checkout: self
+
+  - script: |
+      echo "Logging in to Docker Hub..."
+      echo "$(DOCKER_PASSWORD)" | docker login -u "$(dockerHubUsername)" --password-stdin
+    displayName: 'Docker Login'
+
+  - script: |
+      docker build -t $(imageName):$(Build.BuildId) .
+    displayName: 'Build Docker Image'
+
+  - script: |
+      docker push $(imageName):$(Build.BuildId)
+    displayName: 'Push Docker Image'
