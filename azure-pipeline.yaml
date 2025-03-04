@@ -1,11 +1,10 @@
 trigger:
-  - main  # Or your branch name
+  - main  
 
-pool:
-  vmImage: 'ubuntu-latest'
+pool: Default
 
 variables:
-  dockerHubUsername: 'YOUR_DOCKERHUB_USERNAME'
+  dockerHubUsername: 'saranya275'
   imageName: 'YOUR_DOCKERHUB_USERNAME/your-image-name'
 
 steps:
